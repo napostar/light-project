@@ -154,6 +154,14 @@ contract LightProj is ERC721, ERC721URIStorage, ERC721Enumerable, ContextMixin, 
     }
     
     /**
+     * Accessor for getting the fee for the specified nft via it's tokenId
+     */
+    function getTokenFee(uint256 tokenId) public view returns (uint256 feeAmt){
+      require(_exists(tokenId), "Interaction attempted for nonexistent token");
+      return assetData[tokenId].fee;
+    }
+    
+    /**
      * Override isApprovedForAll to auto-approve open sea's proxy contract
      */
     function isApprovedForAll(address _owner, address _operator) public override view returns (bool isOperator) {
